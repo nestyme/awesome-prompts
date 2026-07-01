@@ -1,0 +1,20 @@
+{
+  "name": "hook-demo-renderer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Remotion composition that assembles a vertical video: a ~3s hook + an app demo.",
+  "scripts": {
+    "render": "remotion render src/index.ts HookDemo",
+    "studio": "remotion studio src/index.ts"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.1",
+    "typescript": "^5.4.0"
+  }
+}
