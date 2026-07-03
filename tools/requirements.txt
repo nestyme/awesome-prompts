@@ -1,0 +1,12 @@
+# Optional per-tool dependencies. Nothing here is needed for the offline core
+# (engagement / account_stats). Install only what a given tool asks for — each
+# tool fails with a clear "missing_dependency" envelope naming its own package.
+
+Pillow            # caption_composite, safe_zones, gen_image
+yt-dlp            # video_metadata, tiktok_account (fallback), decompose_video (--url)
+requests          # trending_sounds, gen_video (download), schedule_post
+TikTokApi         # tiktok_account (rich stats + comments); also needs: playwright install
+instaloader       # (Instagram collection, if added)
+google-genai      # gen_image
+fal-client        # gen_video
+openai-whisper    # decompose_video (--transcribe)

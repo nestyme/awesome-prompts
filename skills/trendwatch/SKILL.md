@@ -7,6 +7,21 @@ description: Reverse-engineer viral organic TikTok/Instagram content from compet
 
 A pipeline for organic TikTok/Instagram growth: discover what's working for competitors, decompose why it's working on 7 axes, generate adapted hook ideas for the user's product, and accumulate learnings over time so the skill gets sharper with use.
 
+## Shared tools
+
+Prefer the repo's [`tools/`](../../tools/README.md) CLIs over hand-writing collection/analytics code — they emit a uniform JSON envelope and chain together. Relevant here:
+
+| Step | Tool | Use |
+|---|---|---|
+| 3 | `trending_sounds.py` | Creative Center trending sounds/hashtags by region + window |
+| 4 | `tiktok_account.py` | Collect an account's videos + stats + comments (TikTokApi → yt-dlp fallback) |
+| 4 | `video_metadata.py` | Fallback collector for a manual URL list when scrapers are blocked |
+| 4-5 | `account_stats.py` | Account median / cadence / outliers / paid-amp + shadow signals / size bucket |
+| 4-5 | `engagement.py` ⭐ | Per-video engagement_score, save_rate, ratios, freshness, format-vs-creator-vs-paid attribution |
+| 5 | `decompose_video.py` | Keyframes + thumb-stop frame + transcript for the 7-axis decomposition |
+
+Canonical chain: `tiktok_account.py` → `account_stats.py` (get median/signals) → `engagement.py --account-median <M> --top 10` (rank ideation-eligible videos). Full map + flags in [`tools/README.md`](../../tools/README.md).
+
 ## Operating principles
 
 1. **Auto-discover before asking — always.** Exhaust tools first: WebSearch (URLs, handles, news), WebFetch (App Store pages, landing pages, competitor profiles), Read/grep (codebase, analytics events, memory files). Ask the user ONLY for: *strategic decisions* (goals, KPIs, where to send traffic), *subjective preferences* (voice, what they value), *operational facts not in any system* (budget, who shoots content), or *validation* of hypotheses already drafted. Never ask for URLs, handles, copy, geo, or anything tools can return. The user's turn is for judgment, not lookup.

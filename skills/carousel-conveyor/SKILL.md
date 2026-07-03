@@ -17,6 +17,19 @@ recurring AI persona. It is the production half of the content system: the
 > trivial to rebuild; the **operating principles and the prompt blocks are the
 > transferable asset**.
 
+## Shared tools
+
+The repo's [`tools/`](../../tools/README.md) CLIs cover the primitives this skill orchestrates (uniform JSON envelope, composable):
+
+| Step | Tool | Use |
+|---|---|---|
+| 2-3 | `gen_image.py` | The ONE paid step: generate the locked reference (text→image) and each cover (ONE-hop image-edit of that ref) |
+| 4 | `caption_composite.py` | The "text is free" step — composite captions in PIL with 8.5%/10%/10% safe margins; never regenerate a photo to change words |
+| 5 | `safe_zones.py` | Optional extra gate: verify slides sit inside platform safe zones + read at thumbnail size |
+| 6 | `schedule_post.py` | Batch-schedule via Postiz with AI-disclosure on; **defaults to `--dry-run`, needs `--live` to post** |
+
+Keys: `GEMINI_API_KEY`, `POSTIZ_API_KEY`. Full map + flags in [`tools/README.md`](../../tools/README.md).
+
 The whole design is built around one economic insight (the "AI UGC army"
 playbook popularized by Adrià Martinez): the only expensive step is generating
 photorealistic faces. So generate a **reusable pool of text-free face photos
@@ -120,8 +133,10 @@ ONLY for judgment/operational facts:
 
 **For SCHEDULING (ask — cannot be guessed):**
 8. **Channel mapping** — which posting-tool account each persona posts to.
-   List channels via the posting tool's API and confirm the handle→id mapping
-   with the user before writing it to config.
+   Pull the live channel handles with `python3 tools/schedule_post.py
+   --list-channels` (returns each channel's handle + platform + id), then
+   confirm the persona→handle→id mapping with the user before writing it to
+   config. Never hardcode handles — always discover them from the tool.
 9. **Final go/no-go** after the visual gate (principle 5).
 
 ## Step 1 — Persona setup (register in code, once)
@@ -244,8 +259,8 @@ Before scheduling ANYTHING (principle 5):
 
 ## Step 6 — Schedule
 
-- List the posting tool's channels, confirm persona→handle→id mapping with the
-  user, write to config.
+- List the posting tool's channels with `tools/schedule_post.py --list-channels`,
+  confirm persona→handle→id mapping with the user, write to config.
 - Batch scheduling is **gap-aware**: build the future slot pool from configured
   posting slots (e.g. 08:30 / 11:30 / 21:00 local), query the tool for slots
   already booked on that channel, drop them, assign each carousel to the

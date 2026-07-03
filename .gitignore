@@ -1,0 +1,15 @@
+# Local working state — NEVER commit (this repo is public/shareable).
+# Product briefs, competitor intel, experiment logs, generated creatives.
+workspace/
+
+# Skill working-state files (product-specific; created per the skill docs).
+skills/*/brief.md
+skills/*/experiments.md
+skills/*/current-plan.md
+skills/*/production-stack.md
+skills/*/dropped-accounts.md
+skills/*/competitors/
+skills/*/trends/
+skills/*/ideas/
+skills/*/mascots/
+skills/*/screencasts/

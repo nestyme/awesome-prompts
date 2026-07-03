@@ -12,6 +12,22 @@ End-to-end system for generating viral TikTok/Instagram content promoting a prod
 
 ---
 
+## Shared tools
+
+The repo's [`tools/`](../../tools/README.md) CLIs wrap the paid generation steps so they can be scripted per frame/slide with a uniform JSON envelope:
+
+| Phase | Tool | Use |
+|---|---|---|
+| 2 | `gen_image.py` | Gemini text→image / image-edit (character ref, carousel slides, anchor frame). No baked text. |
+| 3 | `gen_video.py` | Kling (fal.ai) image→video for the mannequin animation frames |
+| 2/4 | `caption_composite.py` | Composite text overlays deterministically in PIL — free, correctly spelled, re-renderable |
+| 3 | `render_video.py` | Assemble the final 9:16 cut — animated **hook (~3s) + app demo** — via Remotion (replaces the manual ffmpeg trim/concat + editor step) |
+| 4 | `safe_zones.py` | QC a frame vs safe zones + thumbnail readability before shipping |
+
+Keys: `GEMINI_API_KEY`, `FAL_KEY`. `render_video.py` needs Node.js 18+. Full map + flags in [`tools/README.md`](../../tools/README.md).
+
+---
+
 ## Phase 0: Gather Requirements
 
 Before generating anything, collect this information from the user:
