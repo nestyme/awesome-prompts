@@ -23,6 +23,11 @@ Three skills form one pipeline — **discover → produce → schedule**:
    image sets + mannequin outfit-change videos (Gemini + Kling via fal.ai),
    anchor-first technique for consistent backgrounds, 50+ hook library.
 
+**[voice-realism](skills/voice-realism/SKILL.md)** is a standalone helper any
+video-producing step can call: rewrites prompts with spoken lines so the voice
+sounds human (auto-picked delivery, per-model dialogue syntax, acoustics,
+lipsync framing) + scene-matched audio post-processing checklist.
+
 Prompts in [prompts/](prompts/) are standalone (startup roast, Meta ads
 safe-zones).
 
