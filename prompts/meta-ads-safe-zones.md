@@ -27,11 +27,12 @@ META AD SAFE ZONES:
 
 ## Crop survival (1:1 → 4:5 mobile feed)
 
-Meta auto-crops 1:1 to 4:5 on some mobile feed placements. This crops equally top + bottom.
+Meta auto-crops 1:1 to 4:5 on some mobile feed placements. 4:5 is taller and narrower
+than 1:1, so the cover-crop shaves the LEFT + RIGHT edges (not top/bottom).
 Combined with the middle-80% rule:
-- Hero element: MUST be in center 70% (vertical)
-- Headline: MUST be inside center 70%
-- Logo: corner placements OK if still inside center 70%
+- Hero element: MUST sit in the center 70% horizontally, so the side-crop can't clip it
+- Headline: MUST be inside the center 70% width
+- Logo: corner placements OK only if still inside the center 70% width
 
 ## Policy-risk wording patterns (personal-attributes policy)
 

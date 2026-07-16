@@ -63,11 +63,8 @@ def main():
     view_list = sorted(v["views"] for v in videos if v.get("views") is not None)
 
     now = c.now_utc(args.now)
+    # parse_created always returns tz-aware datetimes, so sorting/subtraction is safe.
     dates = sorted(d for d in (c.parse_created(v.get("created")) for v in videos) if d)
-    for d in dates:
-        if not d.tzinfo:
-            from datetime import timezone
-            d = d.replace(tzinfo=timezone.utc)
 
     # Posting cadence from the span of collected posts.
     cadence = None

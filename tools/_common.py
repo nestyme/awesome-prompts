@@ -58,34 +58,6 @@ def require(module: str, pip_name: str | None = None):
              code="missing_dependency", dependency=pip_name or module)
 
 
-def _load_dotenv() -> None:
-    """Load tools/.env into os.environ once, without overriding already-set vars.
-
-    Zero-dependency: lets every key-gated tool 'just work' after the user fills
-    tools/.env, with no need to `source` it. Real values live only in that
-    gitignored file.
-    """
-    import os
-    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env")
-    if not os.path.exists(path):
-        return
-    try:
-        with open(path, "r", encoding="utf-8") as fh:
-            for line in fh:
-                line = line.strip()
-                if not line or line.startswith("#") or "=" not in line:
-                    continue
-                if line.startswith("export "):
-                    line = line[len("export "):]
-                key, _, val = line.partition("=")
-                key = key.strip()
-                val = val.strip().strip('"').strip("'")
-                if key and key not in os.environ:
-                    os.environ[key] = val
-    except OSError:
-        pass
-
-
 def env(key: str, required: bool = True) -> str | None:
     """Read an API key / secret from the environment (or tools/.env)."""
     import os
@@ -94,26 +66,6 @@ def env(key: str, required: bool = True) -> str | None:
         fail(f"Missing environment variable '{key}'.",
              code="missing_env", variable=key)
     return val
-
-
-def env_any(names, required: bool = True, label: str | None = None) -> str | None:
-    """Read the first present of several accepted env var names.
-
-    Lets a tool accept synonyms (e.g. GEMINI_API_KEY / GOOGLE_API_KEY, or
-    FAL_KEY / FAL_AI_API_KEY) so keys copied from other projects work as-is.
-    """
-    import os
-    for name in names:
-        val = os.environ.get(name)
-        if val:
-            return val
-    if required:
-        fail(f"Missing environment variable (any of): {', '.join(names)}.",
-             code="missing_env", variable=label or names[0], accepted=list(names))
-    return None
-
-
-_load_dotenv()
 
 
 def env_any(names, required: bool = True, label: str | None = None) -> str | None:
@@ -223,24 +175,34 @@ def to_int(val) -> int | None:
 
 
 def parse_created(val):
-    """Return a timezone-aware UTC datetime from unix ts / ISO / yt-dlp YYYYMMDD."""
+    """Return a timezone-aware UTC datetime from unix ts (s or ms) / ISO / yt-dlp YYYYMMDD.
+
+    Always returns an *aware* datetime (naive inputs are assumed UTC) so downstream
+    sorting and subtraction never mix aware and naive datetimes (which raises).
+    """
     if val is None:
         return None
-    if isinstance(val, (int, float)) or (isinstance(val, str) and val.isdigit() and len(val) >= 8 and not (len(val) == 8)):
+    s = str(val).strip()
+    # Numeric unix timestamp: a real int/float, or an all-digit string of >= 9 digits
+    # (so an 8-digit YYYYMMDD is not mistaken for one). 13-digit values are milliseconds.
+    if isinstance(val, (int, float)) or (s.isdigit() and len(s) >= 9):
         try:
-            return datetime.fromtimestamp(int(float(val)), tz=timezone.utc)
+            ts = float(val)
+            if ts >= 1e12:  # >= 1e12 is a 13-digit millisecond epoch -> seconds
+                ts /= 1000.0
+            return datetime.fromtimestamp(ts, tz=timezone.utc)
         except (ValueError, OSError, OverflowError):
             pass
-    s = str(val).strip()
     if s.isdigit() and len(s) == 8:  # yt-dlp upload_date: YYYYMMDD
         try:
             return datetime.strptime(s, "%Y%m%d").replace(tzinfo=timezone.utc)
         except ValueError:
             pass
     try:
-        return datetime.fromisoformat(s.replace("Z", "+00:00"))
+        dt = datetime.fromisoformat(s.replace("Z", "+00:00"))
     except ValueError:
         return None
+    return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
 
 
 def normalize_video(video: dict) -> dict:

@@ -22,6 +22,17 @@ import subprocess
 import _common as c
 
 
+def run_ffmpeg(cmd, what):
+    """Run an ffmpeg command, failing with a clean envelope (never a traceback)."""
+    try:
+        proc = subprocess.run(cmd, capture_output=True, text=True)
+    except OSError as exc:  # ffmpeg present on PATH but not spawnable
+        c.fail(f"ffmpeg {what} could not run: {exc}", code="ffmpeg_failed")
+    if proc.returncode != 0:
+        c.fail(f"ffmpeg {what} failed: {(proc.stderr or '').strip()[-500:]}",
+               code="ffmpeg_failed")
+
+
 def download(url, workdir):
     from yt_dlp import YoutubeDL
     target = os.path.join(workdir, "source.%(ext)s")
@@ -63,14 +74,14 @@ def main():
 
     # keyframes across the whole clip
     frame_tmpl = os.path.join(args.out, "frame_%03d.jpg")
-    subprocess.run(["ffmpeg", "-y", "-i", src, "-vf", f"fps={args.fps}", frame_tmpl],
-                   check=True, capture_output=True)
+    run_ffmpeg(["ffmpeg", "-y", "-i", src, "-vf", f"fps={args.fps}", frame_tmpl],
+               "keyframe extraction")
     frames = sorted(glob.glob(os.path.join(args.out, "frame_*.jpg")))
 
     # dedicated thumb-stop frame at the midpoint of the first window
     thumb = os.path.join(args.out, "thumbstop.jpg")
-    subprocess.run(["ffmpeg", "-y", "-ss", str(args.thumbstop_sec / 2), "-i", src,
-                    "-frames:v", "1", thumb], check=True, capture_output=True)
+    run_ffmpeg(["ffmpeg", "-y", "-ss", str(args.thumbstop_sec / 2), "-i", src,
+                "-frames:v", "1", thumb], "thumb-stop frame")
 
     transcript = None
     if args.transcribe:
