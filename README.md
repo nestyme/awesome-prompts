@@ -2,6 +2,8 @@
 
 Prompts and agent skills I actually use, with the rules that make them work.
 
+[![Follow @nestymee on X](https://img.shields.io/badge/%40nestymee-more%20of%20this%20%2B%20building%20in%20public-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/nestymee)
+
 ## Prompts
 
 - [Startup Roast → Action Plan](prompts/startup-roast-review.md) — make an AI agent roast your business using your real data (analytics connectors + web search), then turn the roast into 5 blind spots, a bear case, and an action plan with targets and 30-day checkpoints.
