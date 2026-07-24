@@ -50,10 +50,10 @@ Legend: **offline** = no network/keys, runs anywhere · **net** = calls an API �
 | Tool | Type | One-liner | Key flags |
 |---|---|---|---|
 | [`safe_zones.py`](safe_zones.py) | offline | Audit a creative vs Meta/TikTok safe zones, crop-survival, thumbnail readability. | `--image --text-boxes --target-ratio` |
-| [`schedule_post.py`](schedule_post.py) | net·key | Schedule a carousel/video via Postiz, AI-disclosure on. **Defaults to `--dry-run`.** | `--list-channels --channel-id --when --live` |
+| [`schedule_post.py`](schedule_post.py) | net·key | Schedule a carousel/video via Buffer (GraphQL, `--media-url` public URLs) or Postiz (local `--media` files, AI flag set). Backend auto-picked from the key. **Defaults to `--dry-run`.** | `--list-channels --channel-id --when --live` |
 
 ## Env keys (only for `key` tools)
-`GEMINI_API_KEY` (gen_image) · `FAL_KEY` (gen_video) · `POSTIZ_API_KEY` + optional `POSTIZ_BASE_URL` (schedule_post).
+`GEMINI_API_KEY` (gen_image) · `FAL_KEY` (gen_video) · `BUFFER_API_KEY` **or** `POSTIZ_API_KEY` + optional `POSTIZ_BASE_URL` (schedule_post).
 
 ## Canonical chains
 
