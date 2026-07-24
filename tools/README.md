@@ -41,7 +41,7 @@ Legend: **offline** = no network/keys, runs anywhere · **net** = calls an API �
 ### Generate — the paid creative steps
 | Tool | Type | One-liner | Key flags |
 |---|---|---|---|
-| [`gen_image.py`](gen_image.py) | net·key | Gemini text→image / image-edit (persona ref, cover bank). No baked text. | `--prompt --ref --out` |
+| [`gen_image.py`](gen_image.py) | net·key | Text→image / image-edit (persona ref, cover bank). Default: Seedream v4 via fal (~$0.03/img); `--provider gemini` for Gemini 3 Pro (~$0.13). No baked text. | `--prompt --ref --out --provider` |
 | [`gen_video.py`](gen_video.py) | net·key | Kling (fal.ai) image→video clip. | `--image --prompt --duration` |
 | [`caption_composite.py`](caption_composite.py) | offline | Composite caption text onto a photo with platform-safe margins (PIL). Free, re-renderable. | `--image --text --position --box` |
 | [`render_video.py`](render_video.py) | net·node | Assemble the final 9:16 video: animated **hook (~3s) + app demo**, via Remotion. `--dry-run` to preview props. | `--demo --hook-text --hook-media --hook-seconds --out` |
@@ -53,7 +53,7 @@ Legend: **offline** = no network/keys, runs anywhere · **net** = calls an API �
 | [`schedule_post.py`](schedule_post.py) | net·key | Schedule a carousel/video via Buffer (GraphQL, `--media-url` public URLs) or Postiz (local `--media` files, AI flag set). Backend auto-picked from the key. **Defaults to `--dry-run`.** | `--list-channels --channel-id --when --live` |
 
 ## Env keys (only for `key` tools)
-`GEMINI_API_KEY` (gen_image) · `FAL_KEY` (gen_video) · `BUFFER_API_KEY` **or** `POSTIZ_API_KEY` + optional `POSTIZ_BASE_URL` (schedule_post).
+`FAL_KEY` (gen_image default, gen_video) · `GEMINI_API_KEY` (gen_image `--provider gemini`) · `BUFFER_API_KEY` **or** `POSTIZ_API_KEY` + optional `POSTIZ_BASE_URL` (schedule_post).
 
 ## Canonical chains
 
