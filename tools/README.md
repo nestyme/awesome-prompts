@@ -49,6 +49,7 @@ Legend: **offline** = no network/keys, runs anywhere · **net** = calls an API �
 ### Distribute & QA
 | Tool | Type | One-liner | Key flags |
 |---|---|---|---|
+| [`grid_composite.py`](grid_composite.py) | none | Tile N images (e.g. 4 app screens, 2x2) into one clean slide — rounded tiles, flat bg, headline/body bands reserved. Pair with caption_composite. | `--image --out --cols --bg` |
 | [`safe_zones.py`](safe_zones.py) | offline | Audit a creative vs Meta/TikTok safe zones, crop-survival, thumbnail readability. | `--image --text-boxes --target-ratio` |
 | [`schedule_post.py`](schedule_post.py) | net·key | Schedule a carousel/video via Buffer (GraphQL, `--media-url` public URLs) or Postiz (local `--media` files, AI flag set). Backend auto-picked from the key. **Defaults to `--dry-run`.** | `--list-channels --channel-id --when --live` |
 
