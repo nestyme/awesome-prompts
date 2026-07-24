@@ -124,11 +124,9 @@ def buffer_schedule(requests, key, args):
                "(Buffer's API has no media upload). Host the slides (public R2 "
                "bucket, Cloudinary, ...) and pass their URLs in slide order.",
                code="bad_input", exit_code=2)
-    if args.as_draft:
-        c.fail("--as-draft is Postiz-only; Buffer's API schedules directly.",
-               code="bad_input", exit_code=2)
     due = buffer_due_at(args.when)
     assets = "".join("{image: {url: %s}}," % json.dumps(u) for u in args.media_url)
+    draft = "saveToDraft: true" if args.as_draft else ""
     results = []
     for cid in args.channel_id:
         mutation = """
@@ -139,12 +137,14 @@ def buffer_schedule(requests, key, args):
             schedulingType: automatic
             mode: customScheduled
             dueAt: %s
+            aiAssisted: true
+            %s
             assets: [%s]
           }) {
             ... on PostActionSuccess { post { id status dueAt } }
             ... on MutationError { message }
           }
-        }""" % (json.dumps(args.caption), json.dumps(cid), json.dumps(due), assets)
+        }""" % (json.dumps(args.caption), json.dumps(cid), json.dumps(due), draft, assets)
         if args.dry_run:
             results.append({"channel_id": cid, "would_send": mutation.strip()})
             continue
@@ -176,7 +176,8 @@ def main():
                    help="Local media file paths (postiz backend only).")
     p.add_argument("--media-url", action="append", default=[],
                    help="Public HTTPS media URLs in slide order (buffer backend).")
-    p.add_argument("--as-draft", action="store_true", help="Postiz only.")
+    p.add_argument("--as-draft", action="store_true",
+                   help="Save as a draft (Buffer: saveToDraft; Postiz: type=draft). Never publishes.")
     live = p.add_mutually_exclusive_group()
     live.add_argument("--dry-run", action="store_true", default=True)
     live.add_argument("--live", dest="dry_run", action="store_false",
