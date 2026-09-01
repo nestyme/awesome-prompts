@@ -30,7 +30,7 @@ Legend: **offline** = no network/keys, runs anywhere · **net** = calls an API �
 | Tool | Type | One-liner | Key flags |
 |---|---|---|---|
 | [`engagement.py`](engagement.py) ⭐ | offline | Video stats → engagement_score, save_rate, ratios, freshness/lifecycle, format-vs-creator-vs-paid attribution. | `--follower-count --account-median --top --now` |
-| [`account_stats.py`](account_stats.py) | offline | Aggregate an account → median views, cadence, outliers, paid-amp/shadow signals, size bucket. | `--official-cadence-days` |
+| [`account_stats.py`](account_stats.py) | offline | Aggregate an account → median views (**pinned excluded** — they're showcase picks and inflate the baseline), cadence, outliers, paid-amp/shadow signals, size bucket. | `--official-cadence-days`, `--keep-pinned` |
 | [`decompose_video.py`](decompose_video.py) | net | Download + extract keyframes + thumb-stop frame + transcript, for 7-axis analysis. | `--url/--file --transcribe` |
 
 ### Trends

@@ -197,6 +197,7 @@ _ALIASES = {
     "url":       ("url", "webVideoUrl", "video_url", "link", "webpage_url"),
     "id":        ("id", "video_id", "aweme_id"),
     "caption":   ("caption", "desc", "description", "title", "text"),
+    "pinned":    ("pinned", "isPinned", "is_pinned", "is_top", "isTop"),
 }
 
 
@@ -250,6 +251,9 @@ def normalize_video(video: dict) -> dict:
     out["id"] = _dig(video, "id")
     out["url"] = _dig(video, "url")
     out["caption"] = _dig(video, "caption")
+    # Pinned posts are the creator's best-ever video and scrapers return them
+    # first — including them in a median inflates it (observed up to 28x).
+    out["pinned"] = bool(_dig(video, "pinned"))
     created = parse_created(_dig(video, "created"))
     out["created"] = created.isoformat() if created else None
     return out

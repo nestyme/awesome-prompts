@@ -36,6 +36,9 @@ def main():
     p.add_argument("--official-cadence-days", type=float,
                    help="Posting interval of the official account, to test shadow overlap.")
     p.add_argument("--now", help="Override 'now' as ISO date.")
+    p.add_argument("--keep-pinned", action="store_true",
+                   help="Include pinned videos in the median (default: excluded — "
+                        "pinned posts are showcase picks and inflate the baseline).")
     args = p.parse_args()
     c.set_tool("account_stats")
 
@@ -60,7 +63,15 @@ def main():
         c.fail("No videos found in input.", code="empty", exit_code=1)
 
     videos = [c.normalize_video(v) for v in raw_videos if isinstance(v, dict)]
-    view_list = sorted(v["views"] for v in videos if v.get("views") is not None)
+    # Pinned = the creator's showcase pick, not a typical post. Median over
+    # pinned posts is the single most expensive data bug in creator outreach:
+    # it inflates the baseline every downstream decision (pricing, ranking)
+    # is built on. Excluded by default; --keep-pinned restores raw behaviour.
+    pinned_n = sum(1 for v in videos if v.get("pinned"))
+    scored = videos if args.keep_pinned else [v for v in videos if not v.get("pinned")]
+    if not scored:
+        scored = videos
+    view_list = sorted(v["views"] for v in scored if v.get("views") is not None)
 
     now = c.now_utc(args.now)
     dates = sorted(d for d in (c.parse_created(v.get("created")) for v in videos) if d)
@@ -129,6 +140,8 @@ def main():
         "follower_bucket": follower_bucket,
         "n_videos": len(videos),
         "account_median_views": median,
+        "median_excludes_pinned": (not args.keep_pinned) and pinned_n > 0,
+        "pinned_videos_found": pinned_n,
         "mean_views": mean,
         "max_views": view_list[-1] if view_list else None,
         "cadence": cadence,

@@ -23,6 +23,13 @@ Three skills form one pipeline — **discover → produce → schedule**:
    image sets + mannequin outfit-change videos (Gemini + Kling via fal.ai),
    anchor-first technique for consistent backgrounds, 50+ hook library.
 
+**[influencer-outreach](skills/influencer-outreach/SKILL.md)** is the **paid**
+counterpart to trendwatch's organic loop: instead of mining what creators post,
+it finds, prices, contracts and pays them. Verify reach before writing (exclude
+pinned), segment production-sellers from reach-creators, ask their rate in the
+first email, pay base upfront + per-view bonus locked on day 14. Drafts only —
+sending is human-gated in code. Details: [reference.md](skills/influencer-outreach/reference.md).
+
 **[voice-realism](skills/voice-realism/SKILL.md)** is a standalone helper any
 video-producing step can call: rewrites prompts with spoken lines so the voice
 sounds human (auto-picked delivery, per-model dialogue syntax, acoustics,
@@ -42,7 +49,7 @@ pipe into each other. Full map + canonical chains: [tools/README.md](tools/READM
 | Stage | Tools |
 |---|---|
 | Collect | `tiktok_account` (TikTokApi→yt-dlp fallback), `video_metadata` (any URL) |
-| Analyze (offline, no keys) | `engagement` ⭐ (score/save-rate/freshness/attribution), `account_stats` (median/cadence/paid-amp signals) |
+| Analyze (offline, no keys) | `engagement` ⭐ (score/save-rate/freshness/attribution), `account_stats` (median **excl. pinned**/cadence/paid-amp signals) |
 | Decompose | `decompose_video` (keyframes + thumb-stop + transcript) |
 | Trends | `trending_sounds` (Creative Center; falls back to WebFetch) |
 | Generate | `gen_image` (Gemini), `gen_video` (Kling/fal.ai), `caption_composite` (PIL, safe margins), `render_video` (Remotion: **hook ≤3s + demo**) |
