@@ -13,18 +13,18 @@ first send (``--conversion segment=rate``).
 
 Usage:
   # CSV with columns: user_id, segment[, platform][, trigger_ts][, channel_address]
-  python cohort_value.py --in cohorts.csv --arppu 14.99
+  python cohort_value.py --in cohorts.csv --arppu 19.99
 
   # per-platform ARPPU (web has a different price and refund rate than the app store)
   python cohort_value.py --in cohorts.csv --arppu web=13.9 --arppu ios=17.5 \\
       --refund-rate web=0.07 --refund-rate ios=0.014
 
   # override an assumed conversion with a measured one, and render the dashboard
-  python cohort_value.py --in cohorts.csv --arppu 14.99 --conversion checkout_abandoned=0.11 \\
+  python cohort_value.py --in cohorts.csv --arppu 19.99 --conversion checkout_abandoned=0.11 \\
       --dashboard almost-paid.html
 
   # what would a 50% discount to the trial_lapsed segment cost in margin?
-  python cohort_value.py --in cohorts.csv --arppu 14.99 --discount trial_lapsed=0.5
+  python cohort_value.py --in cohorts.csv --arppu 19.99 --discount trial_lapsed=0.5
 
 Input JSON alternative: a list of {"user_id", "segment", ...} objects, or an
 object with a "users" list. Segment names are normalized (case, spaces, dashes).

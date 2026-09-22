@@ -19,7 +19,7 @@ file disagree, the file wins and the query gets fixed.
 |---|---|---|
 | {paywall_shown} | ok / suspect / broken | {daily uniques vs new users = 0.93 → fires on onboarding} |
 | {checkout_started} | | |
-| {purchase} | | {undercounts provider by 27% → provider wins} |
+| {purchase} | | {undercounts provider by 20% → provider wins} |
 | {trial_expired} | | |
 | {limit_hit} | | |
 
