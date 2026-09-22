@@ -151,8 +151,8 @@ the first send:**
 
 Expected revenue = size × ARPPU × conversion. ARPPU is per platform when
 platforms differ (web billing and app stores routinely do — different prices,
-different refund rates). Refund rate is subtracted: if a channel refunds 7%,
-its ARPPU is 93% of list.
+different refund rates). Refund rate is subtracted: if a channel refunds 5%,
+its ARPPU is 95% of list.
 
 The tool also emits a **"what a discount costs" line**: for a segment that
 would have converted at rate *r* without an offer, a *d*% discount sent to all
