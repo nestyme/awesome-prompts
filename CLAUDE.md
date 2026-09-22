@@ -35,6 +35,13 @@ video-producing step can call: rewrites prompts with spoken lines so the voice
 sounds human (auto-picked delivery, per-model dialogue syntax, acoustics,
 lipsync framing) + scene-matched audio post-processing checklist.
 
+**[almost-paid](skills/almost-paid/SKILL.md)** is a standalone growth skill,
+not part of the content pipeline: validates money events, cuts six "almost
+paid" segments, prices them (`tools/cohort_value.py`), renders a one-screen
+dashboard with an offer per segment, and hands off to the user's own sender
+behind a dry-run/confirm gate. Its state (`brief.md`, `cohorts/`,
+`campaigns.md`) is product-specific and gitignored.
+
 Prompts in [prompts/](prompts/) are standalone (startup roast, Meta ads
 safe-zones).
 
@@ -53,6 +60,7 @@ pipe into each other. Full map + canonical chains: [tools/README.md](tools/READM
 | Decompose | `decompose_video` (keyframes + thumb-stop + transcript) |
 | Trends | `trending_sounds` (Creative Center; falls back to WebFetch) |
 | Generate | `gen_image` (Gemini), `gen_video` (Kling/fal.ai), `caption_composite` (PIL, safe margins), `render_video` (Remotion: **hook ≤3s + demo**) |
+| Growth (offline) | `cohort_value` (almost-paid segments → size, expected revenue, discount cost, dashboard) |
 | Distribute/QA | `safe_zones` (bands/crop/thumbnail), `schedule_post` (Postiz, **--dry-run default**, AI-disclosure on) |
 
 Canonical chain: `tiktok_account` → `account_stats` (median/signals) →

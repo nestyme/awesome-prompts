@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Almost paid</title>
+<style>
+  :root{--bg:#F4F1EB;--ink:#1F1C18;--mute:#7E776C;--line:#DDD6CB;--card:#FBF9F5;--hot:#B4533C;--warm:#C2973A;--cool:#7A8EA6;--up:#5E7A4C;--t-bg:#1B1916;--t-ink:#E9E3D8;--t-mute:#8C8578}
+  *{box-sizing:border-box;margin:0}body{background:var(--bg);color:var(--ink);font-family:-apple-system,"SF Pro Display","Helvetica Neue",sans-serif;padding:36px 44px 60px;max-width:1280px;margin:0 auto}
+  header{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+  h1{font-size:30px;letter-spacing:-.9px}h1 small{display:block;font-size:14px;font-weight:400;color:var(--mute);letter-spacing:0;margin-top:4px}
+  .head{background:var(--t-bg);color:var(--t-ink);border-radius:18px;padding:18px 24px;min-width:340px}
+  .head b{display:block;font-size:44px;letter-spacing:-1.8px;color:#9CC487;font-variant-numeric:tabular-nums}.head span{font-size:12.5px;color:var(--t-mute);line-height:1.45;display:block}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
+  .seg{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px;display:flex;flex-direction:column;gap:8px;position:relative}
+  .seg .t{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#fff;padding:3px 9px;border-radius:9px;width:max-content}
+  .seg h2{font-size:18px;letter-spacing:-.4px;line-height:1.15}
+  .n{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-variant-numeric:tabular-nums}.n div{font-size:12.5px;color:var(--mute)}.n div b{display:block;font-size:22px;letter-spacing:-.6px;color:var(--ink)}
+  .rev b{color:var(--up)!important}
+  .conv{font-size:12px;color:var(--mute)}.conv i{font-style:normal;padding:1px 6px;border-radius:6px;background:var(--line);color:var(--ink);font-size:11px;margin-left:4px}
+  .conv i.measured{background:var(--up);color:#fff}
+  .offer{font-size:13px;line-height:1.4;padding-top:8px;border-top:1px dashed var(--line)}.offer span{color:var(--mute)}
+  .cost{font-size:12px;color:var(--hot)}
+  .btn{margin-top:auto;align-self:flex-start;font-size:12.5px;font-weight:600;background:var(--ink);color:var(--bg);border:0;border-radius:10px;padding:8px 13px;cursor:pointer}
+  .rank{position:absolute;top:14px;right:16px;font-size:12px;color:var(--mute);font-variant-numeric:tabular-nums}
+  footer{margin-top:26px;font-size:12.5px;color:var(--mute);line-height:1.6;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  .warn{background:#FBEFEA;border:1px solid #E9C7BC;color:#7A3324;border-radius:12px;padding:10px 14px;font-size:13px;margin-top:16px}
+  @media(max-width:900px){.grid{grid-template-columns:1fr 1fr}}@media(max-width:600px){.grid{grid-template-columns:1fr}body{padding:20px 16px}}
+</style></head><body>
+<header>
+  <h1>Almost paid<small id="sub"></small></h1>
+  <div class="head"><span>recoverable revenue, at assumed conversion rates</span><b id="total">$0</b><span id="totalNote"></span></div>
+</header>
+<div id="warn" class="warn" style="display:none"></div>
+<div class="grid" id="grid"></div>
+<footer><div id="foot"></div><div>hold-out logged per send · exclusions: paid on any platform, active trial, refund/chargeback, opt-out, contacted &lt;14d, trigger &lt;24h</div></footer>
+<script>
+const DATA = /*__DATA__*/null;
+const $ = (id) => document.getElementById(id);
+const usd = (v) => "$" + Math.round(v).toLocaleString();
+const TEMP = {hottest: "var(--hot)", hot: "var(--hot)", warm: "var(--warm)", cool: "var(--cool)"};
+if (!DATA) { $("sub").textContent = "no data — run tools/cohort_value.py --dashboard"; }
+else {
+  const t = DATA.totals;
+  $("sub").textContent = `${t.users_kept.toLocaleString()} users in ${DATA.segments.length} segments · data as of ${DATA.as_of.slice(0, 10)}`;
+  $("total").textContent = usd(t.expected_revenue);
+  const measured = DATA.segments.filter((s) => s.conversion_source === "measured").length;
+  $("totalNote").textContent = measured ? `${measured} of ${DATA.segments.length} segments on measured rates` : "no segment measured yet — first send replaces the assumptions";
+  const unknown = Object.entries(t.unknown_segments || {});
+  if (unknown.length) { $("warn").style.display = "block"; $("warn").textContent = "ignored rows with unknown segment: " + unknown.map(([k, v]) => `${k} × ${v}`).join(", "); }
+  DATA.segments.forEach((s) => {
+    const card = document.createElement("div"); card.className = "seg";
+    const plats = Object.entries(s.platforms).filter(([k]) => k !== "*").map(([k, v]) => `${k} ${v}`).join(" · ");
+    card.innerHTML = `<span class="rank">#${s.priority}</span><span class="t" style="background:${TEMP[s.temperature]}">${s.temperature}</span><h2>${s.label}</h2>
+      <div class="n"><div>users to contact<b>${s.sendable_after_holdout.toLocaleString()}</b>${plats ? plats : ""}${s.held_out ? ` · ${s.held_out} held out` : ""}</div>
+      <div class="rev">expected revenue<b>${usd(s.expected_revenue)}</b>${usd(s.revenue_per_contact * 100) } per 100 contacts</div></div>
+      <div class="conv">conversion ${(s.conversion * 100).toFixed(1)}%<i class="${s.conversion_source}">${s.conversion_source}</i> · net ARPPU $${s.net_arppu}</div>
+      <div class="offer"><span>offer</span> ${s.offer}</div>
+      ${s.discount != null ? `<div class="cost">a ${Math.round(s.discount * 100)}% discount gives away ${usd(s.discount_cost_on_organic)} to people who'd pay anyway · needs +${(s.breakeven_extra_conversion * 100).toFixed(1)} pts conversion to break even</div>` : ""}
+      <button class="btn" data-seg="${s.segment}">export ${s.segment}.csv</button>`;
+    $("grid").appendChild(card);
+  });
+  $("foot").innerHTML = `${DATA.assumption_note}<br>${t.excluded_too_fresh} users excluded as &lt;${t.exclude_hours}h old · hold-out ${Math.round(t.holdout * 100)}%${DATA.csv_dir ? ` · send lists in <code>${DATA.csv_dir}</code>` : ""}`;
+  document.querySelectorAll(".btn").forEach((b) => b.addEventListener("click", () => {
+    alert(DATA.csv_dir ? `Send list: ${DATA.csv_dir}/${b.dataset.seg}.csv` : "Re-run cohort_value.py with --csv-dir <dir> to write per-segment send lists.");
+  }));
+}
+</script></body></html>

@@ -13,3 +13,7 @@ skills/*/trends/
 skills/*/ideas/
 skills/*/mascots/
 skills/*/screencasts/
+
+# almost-paid skill state (user ids, campaign logs)
+skills/almost-paid/cohorts/
+skills/almost-paid/campaigns.md

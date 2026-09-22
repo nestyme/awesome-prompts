@@ -52,6 +52,12 @@ Legend: **offline** = no network/keys, runs anywhere · **net** = calls an API �
 | [`safe_zones.py`](safe_zones.py) | offline | Audit a creative vs Meta/TikTok safe zones, crop-survival, thumbnail readability. | `--image --text-boxes --target-ratio` |
 | [`schedule_post.py`](schedule_post.py) | net·key | Schedule a carousel/video via Postiz, AI-disclosure on. **Defaults to `--dry-run`.** | `--list-channels --channel-id --when --live` |
 
+### Growth
+
+| Tool | Type | One-liner | Key flags |
+|---|---|---|---|
+| [`cohort_value.py`](cohort_value.py) | offline | "Almost paid" cohort CSV/JSON → per-segment size, net ARPPU (refunds subtracted), expected revenue at labelled assumed/measured conversion, discount cost on organic payers, priority; renders the almost-paid dashboard and per-segment send lists. | `--arppu [platform=]x --refund-rate --conversion seg=r --discount seg=d --holdout --exclude-hours --dashboard --csv-dir` |
+
 ## Env keys (only for `key` tools)
 `GEMINI_API_KEY` (gen_image) · `FAL_KEY` (gen_video) · `POSTIZ_API_KEY` + optional `POSTIZ_BASE_URL` (schedule_post).
 
