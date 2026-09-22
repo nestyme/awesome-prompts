@@ -1,6 +1,6 @@
 ---
 name: carousel-conveyor
-description: Turn trendwatched hook ideas into finished TikTok/Instagram photo carousels for a recurring AI persona, then schedule them via a posting tool (e.g. Postiz). Trigger when the user wants to build carousels for a character, stand up a new persona, generate reusable cover photos, render slide decks with captions, or plan/schedule carousel posts. The downstream complement to the trendwatch skill: trendwatch decides WHAT to post; this skill PRODUCES and SCHEDULES it with a specific persona's face and lore. Cost-aware by design — generate a reusable POOL of face photos ONCE per persona, then composite captions for free and reuse the photos across many carousels.
+description: "Turn trendwatched hook ideas into finished TikTok/Instagram photo carousels for a recurring AI persona, then schedule them via a posting tool (e.g. Postiz). Trigger when the user wants to build carousels for a character, stand up a new persona, generate reusable cover photos, render slide decks with captions, or plan/schedule carousel posts. The downstream complement to the trendwatch skill: trendwatch decides WHAT to post; this skill PRODUCES and SCHEDULES it with a specific persona's face and lore. Cost-aware by design — generate a reusable POOL of face photos ONCE per persona, then composite captions for free and reuse the photos across many carousels."
 tools: Read, Write, Edit, Bash, Glob, Grep, Agent, AskUserQuestion
 ---
 
