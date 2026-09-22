@@ -41,7 +41,7 @@ Legend: **offline** = no network/keys, runs anywhere · **net** = calls an API �
 ### Generate — the paid creative steps
 | Tool | Type | One-liner | Key flags |
 |---|---|---|---|
-| [`gen_image.py`](gen_image.py) | net·key | Gemini text→image / image-edit (persona ref, cover bank). No baked text. | `--prompt --ref --out` |
+| [`gen_image.py`](gen_image.py) | net·key | Text→image / image-edit (persona ref, cover bank). Default: Seedream v4 via fal (~$0.03/img); `--provider gemini` for Gemini 3 Pro (~$0.13). No baked text. | `--prompt --ref --out --provider` |
 | [`gen_video.py`](gen_video.py) | net·key | Kling (fal.ai) image→video clip. | `--image --prompt --duration` |
 | [`caption_composite.py`](caption_composite.py) | offline | Composite caption text onto a photo with platform-safe margins (PIL). Free, re-renderable. | `--image --text --position --box` |
 | [`render_video.py`](render_video.py) | net·node | Assemble the final 9:16 video: animated **hook (~3s) + app demo**, via Remotion. `--dry-run` to preview props. | `--demo --hook-text --hook-media --hook-seconds --out` |
@@ -49,8 +49,9 @@ Legend: **offline** = no network/keys, runs anywhere · **net** = calls an API �
 ### Distribute & QA
 | Tool | Type | One-liner | Key flags |
 |---|---|---|---|
+| [`grid_composite.py`](grid_composite.py) | none | Tile N images (e.g. 4 app screens, 2x2) into one clean slide — rounded tiles, flat bg, headline/body bands reserved. Pair with caption_composite. | `--image --out --cols --bg` |
 | [`safe_zones.py`](safe_zones.py) | offline | Audit a creative vs Meta/TikTok safe zones, crop-survival, thumbnail readability. | `--image --text-boxes --target-ratio` |
-| [`schedule_post.py`](schedule_post.py) | net·key | Schedule a carousel/video via Postiz, AI-disclosure on. **Defaults to `--dry-run`.** | `--list-channels --channel-id --when --live` |
+| [`schedule_post.py`](schedule_post.py) | net·key | Schedule a carousel/video via Buffer (GraphQL, `--media-url` public URLs) or Postiz (local `--media` files, AI flag set). Backend auto-picked from the key. **Defaults to `--dry-run`.** | `--list-channels --channel-id --when --live` |
 
 ### Growth
 
@@ -59,7 +60,7 @@ Legend: **offline** = no network/keys, runs anywhere · **net** = calls an API �
 | [`cohort_value.py`](cohort_value.py) | offline | "Almost paid" cohort CSV/JSON → per-segment size, net ARPPU (refunds subtracted), expected revenue at labelled assumed/measured conversion, discount cost on organic payers, priority; renders the almost-paid dashboard and per-segment send lists. | `--arppu [platform=]x --refund-rate --conversion seg=r --discount seg=d --holdout --exclude-hours --dashboard --csv-dir` |
 
 ## Env keys (only for `key` tools)
-`GEMINI_API_KEY` (gen_image) · `FAL_KEY` (gen_video) · `POSTIZ_API_KEY` + optional `POSTIZ_BASE_URL` (schedule_post).
+`FAL_KEY` (gen_image default, gen_video) · `GEMINI_API_KEY` (gen_image `--provider gemini`) · `BUFFER_API_KEY` **or** `POSTIZ_API_KEY` + optional `POSTIZ_BASE_URL` (schedule_post).
 
 ## Canonical chains
 
