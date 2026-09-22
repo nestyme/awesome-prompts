@@ -140,6 +140,18 @@ size, expected revenue, revenue per contact, and a priority rank.
 Default assumed conversion rates — **conservative, labelled, replaced after
 the first send:**
 
+**Where these numbers come from, and what they are not.** They are starting
+guesses, not benchmarks: rough priors from how these segments tend to behave
+(someone whose card was declined has already decided; someone who saw a
+paywall once was mostly browsing), set low on purpose so a projection built on
+them errs on the side of understating revenue. They are not measured on any
+product, not from a study, and not this repo's numbers. Their only job is to
+give the dashboard a defensible first estimate and a rank order; the first
+campaign replaces them with what actually happened
+(`--conversion segment=rate`), and the dashboard flips that segment's label
+from *assumed* to *measured*. If a projection is being shown to anyone who
+might act on it, say which rates are still assumed.
+
 | Segment | Default assumed conversion | Why |
 |---|---|---|
 | 1 checkout abandoned | 8% | closest to the money; friction, not doubt |
