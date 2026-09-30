@@ -155,31 +155,6 @@ accounts post content that is not about the app (motivation, rules, lists)
 with the app in the bio and on the last slide, and the winners post 1–6 times
 a week, not 3 times a day.
 
-## Reference accounts (scanned 2026-09-29, last 25 posts each)
-
-Public accounts, so you can open them and see the format live. Numbers are
-carousel-only: median views, best post, pooled save-rate and like-rate. They
-will drift; the *pattern* is the point.
-
-| Account | Niche | Sells | Median | Best | Save | Like | Read |
-|---|---|---|---:|---:|---:|---:|---|
-| [@grindai.app](https://www.tiktok.com/@grindai.app) | self-improvement | own app (bio + last slide) | 37k | 28.4M | 1.3% | 10.3% | motivation lists, 6 posts/wk, app never on slide 1 |
-| [@the.atomic.reset](https://www.tiktok.com/@the.atomic.reset) | discipline / fitness | own app | 26k | 10.7M | 2.4% | 12.5% | one post a week is enough when saves are this high |
-| [@sourhealing](https://www.tiktok.com/@sourhealing) | self-care | own app | 20k | 4.8M | 4.6% | 9.2% | text-only brand template, numbered lists, CTA on slide 6 only |
-| [@homedecorave](https://www.tiktok.com/@homedecorave) | interior | own app (link in bio) | 12k | 125M | 0.2% | 3.3% | "which one should I go with" + AI renders; reach from comments, not saves |
-| [@visualize.ai.app](https://www.tiktok.com/@visualize.ai.app) | interior | own app | 5k | 33M | 1.0% | 8.6% | same mechanic as above, 18k followers |
-| [@heather.xoxo](https://www.tiktok.com/@heather.xoxo) | dating advice | nothing on-slide | 41k | 7.5M | 2.7% | 9.7% | pure text advice, hashtags only — the ceiling for "no product" content |
-| [@themodestfemme](https://www.tiktok.com/@themodestfemme) | modest fashion | IG / shop | 38k | 1.7M | 2.5% | 8.0% | style guides, "want a part 2?" |
-| [@onstyle_app](https://www.tiktok.com/@onstyle_app) | fashion | own app | 31k | 1.0M | 1.5% | 2.8% | colour-decoding carousels "what colours should we decode next?" |
-| [@theappshelf](https://www.tiktok.com/@theappshelf) | app recs | own app inside roundups | 5k | 451k | 3.8% | 6.9% | Notes-card per app on aesthetic photos, "this one is mine" |
-| [@flora_inspox](https://www.tiktok.com/@flora_inspox) | girly inspo | nothing | 2.6k | 757k | 3.7% | 6.5% | "apps every girl needs" with icons only, zero production |
-| [@quierodulcito](https://www.tiktok.com/@quierodulcito) | girly inspo | nothing | 1.9k | 4.3M | 4.4% | 9.9% | "phone games y'all are obsessed with, 11/10" — ask for recs + personal ratings |
-| [@dreamfits.chlo](https://www.tiktok.com/@dreamfits.chlo) | fashion (shadow) | try-on app, "btw it's called…" | 645k | 4.9M | 0.03% | 0.4% | **bought**: 7 of 9 carousels flagged; copy the try-on format, not the numbers |
-
-The 1% like-rate line came from this sample: 273 carousels with 50k+ views,
-median 5.0%, bottom decile 0.89%. Re-derive it for your niche with
-`carousel_leaderboard.py` (`calibration` in the output) before trusting it.
-
 ## Deliverable template
 
 ```
