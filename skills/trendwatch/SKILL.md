@@ -166,6 +166,15 @@ When generating AI characters for content, two production modes are available:
 
 For everything else — variant content, trend-jacks, transformations, anti-haul, listicles — the variation across videos is the asset, not the liability.
 
+### Moderation-restricted verticals: misspell the restricted term, ditch the official account
+
+In verticals where the platform restricts promotion of the product category (weight-loss meds, supplements, gambling, finance, CBD), two patterns dominate the winners:
+
+- **Deliberate misspellings of restricted terms in text overlays** ("ozempiiic", "skinnny", "weightt") — evades keyword moderation while staying legible; pair with framing the content as routine/identity/tracking rather than product promotion. Winning videos also skip trending sounds in favor of original audio + overlay text (lower moderation surface).
+- **Official brand accounts are organically dead** — every serious player routes reach through UGC-shaped surfaces instead: shadow-account farms, partner-creator programs, affiliate "share & earn" schemes. When entering such a vertical, benchmark the UGC network, not the official handle, and post on a UGC-shaped account yourself.
+
+Diagnostic: if the category's top 3 official brand accounts all have recent-post medians in the hundreds while individual creators in the same niche pull 10-100× that, you're in this regime.
+
 ### Scale-vs-strategy diagnosis (same vs-median ratio across account sizes)
 
 When a small account's best post sits at the same multiplier above its own median (e.g. 1.6×) as a much larger transferable-pattern competitor's best hit, the format and message are already working. The remaining gap is **scale** (algo test bucket size), not strategy.
