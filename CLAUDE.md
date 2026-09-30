@@ -30,6 +30,13 @@ pinned), segment production-sellers from reach-creators, ask their rate in the
 first email, pay base upfront + per-view bonus locked on day 14. Drafts only —
 sending is human-gated in code. Details: [reference.md](skills/influencer-outreach/reference.md).
 
+**[carousel-benchmark](skills/carousel-benchmark/SKILL.md)** is the research
+step for photo-mode carousels specifically: discover carousel accounts in a
+niche (Top-section search — `/video` search and hashtags return no slideshows),
+profile-scan them, rank by save-rate / like-rate with a Spark-Ads boost flag,
+and read the slides of the top posts. Tools: `carousel_scan.py` (Apify) →
+`carousel_leaderboard.py` (offline).
+
 **[voice-realism](skills/voice-realism/SKILL.md)** is a standalone helper any
 video-producing step can call: rewrites prompts with spoken lines so the voice
 sounds human (auto-picked delivery, per-model dialogue syntax, acoustics,
@@ -47,7 +54,7 @@ safe-zones).
 
 ## Tools ([tools/](tools/README.md))
 
-12 composable Python CLIs the skills call on demand. **Uniform contract**: CLI
+14 composable Python CLIs the skills call on demand. **Uniform contract**: CLI
 flags and/or JSON on stdin → exactly ONE JSON envelope on stdout
 (`{"ok", "tool", "data"|"error"}`), logs to stderr, exit 0/1/2. Field aliases
 from any collector (TikTokApi / yt-dlp / instaloader) are normalized, so tools
@@ -55,8 +62,8 @@ pipe into each other. Full map + canonical chains: [tools/README.md](tools/READM
 
 | Stage | Tools |
 |---|---|
-| Collect | `tiktok_account` (TikTokApi→yt-dlp fallback), `video_metadata` (any URL) |
-| Analyze (offline, no keys) | `engagement` ⭐ (score/save-rate/freshness/attribution), `account_stats` (median **excl. pinned**/cadence/paid-amp signals) |
+| Collect | `tiktok_account` (TikTokApi→yt-dlp fallback), `video_metadata` (any URL), `carousel_scan` (Apify; videos + photo-mode carousels, slide download) |
+| Analyze (offline, no keys) | `engagement` ⭐ (score/save-rate/freshness/attribution), `account_stats` (median **excl. pinned**/cadence/paid-amp signals), `carousel_leaderboard` (per-account carousel medians, save/like-rate, boost flag) |
 | Decompose | `decompose_video` (keyframes + thumb-stop + transcript) |
 | Trends | `trending_sounds` (Creative Center; falls back to WebFetch) |
 | Generate | `gen_image` (Gemini), `gen_video` (Kling/fal.ai), `caption_composite` (PIL, safe margins), `render_video` (Remotion: **hook ≤3s + demo**) |

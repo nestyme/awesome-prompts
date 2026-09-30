@@ -24,6 +24,7 @@ Legend: **offline** = no network/keys, runs anywhere · **net** = calls an API �
 | Tool | Type | One-liner | Key flags |
 |---|---|---|---|
 | [`tiktok_account.py`](tiktok_account.py) | net | Pull an account's recent videos + stats (+ top comments). TikTokApi → yt-dlp fallback. | `--handle --count --comments` |
+| [`carousel_scan.py`](carousel_scan.py) | net·key | Apify TikTok scraper: keyword search in the **Top** section (the only one that returns photo-mode carousels), profile scans, single posts + slide download with contact sheets. Marks `is_slideshow`, `slide_count`, author bio/link. ≈$0.003/post. | `--queries --profiles --posts --slides-dir --cache --only-slideshows` |
 | [`video_metadata.py`](video_metadata.py) | net | Universal single-URL metadata (TikTok/IG/YT). The always-works fallback. | `--url` / `--url-file` |
 
 ### Analyze — turn data into signal (offline core)
@@ -31,6 +32,7 @@ Legend: **offline** = no network/keys, runs anywhere · **net** = calls an API �
 |---|---|---|---|
 | [`engagement.py`](engagement.py) ⭐ | offline | Video stats → engagement_score, save_rate, ratios, freshness/lifecycle, format-vs-creator-vs-paid attribution. | `--follower-count --account-median --top --now` |
 | [`account_stats.py`](account_stats.py) | offline | Aggregate an account → median views (**pinned excluded** — they're showcase picks and inflate the baseline), cadence, outliers, paid-amp/shadow signals, size bucket. | `--official-cadence-days`, `--keep-pinned` |
+| [`carousel_leaderboard.py`](carousel_leaderboard.py) | offline | Posts → per-account carousel metrics: median/best views, hit ≥100k, save/like/share-rate, `susp_paid` (≥50k views & like-rate <1%), cadence, top posts; sample like-rate calibration; `--md` table. | `--in --min-slides --labels --top --md` |
 | [`decompose_video.py`](decompose_video.py) | net | Download + extract keyframes + thumb-stop frame + transcript, for 7-axis analysis. | `--url/--file --transcribe` |
 
 ### Trends
