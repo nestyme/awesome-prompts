@@ -37,6 +37,14 @@ profile-scan them, rank by save-rate / like-rate with a Spark-Ads boost flag,
 and read the slides of the top posts. Tools: `carousel_scan.py` (Apify) →
 `carousel_leaderboard.py` (offline).
 
+**[ugc-hooks](skills/ugc-hooks/SKILL.md)** is the same research step for
+person-on-camera **video** app promos, plus the production that follows:
+discover (`carousel_scan.py` search, slideshows dropped) → OCR the hook off the
+first 3.5 s → label into 15 hook formats → shot list → takes review → Remotion
+batch with trend sounds (drop on the cut) and step captions → privacy gate →
+posting kit (disclosure, AI label, anti-spam captions/pins). Taxonomy,
+composition and checklists: [reference.md](skills/ugc-hooks/reference.md).
+
 **[voice-realism](skills/voice-realism/SKILL.md)** is a standalone helper any
 video-producing step can call: rewrites prompts with spoken lines so the voice
 sounds human (auto-picked delivery, per-model dialogue syntax, acoustics,
