@@ -50,6 +50,15 @@ video-producing step can call: rewrites prompts with spoken lines so the voice
 sounds human (auto-picked delivery, per-model dialogue syntax, acoustics,
 lipsync framing) + scene-matched audio post-processing checklist.
 
+**[stop-slop](skills/stop-slop/SKILL.md)** is the text counterpart to
+voice-realism: a standalone helper for any English text (posts, captions,
+outreach emails, product copy, docs, essays, fiction). It diagnoses LLM
+writing patterns by root cause, rewrites from the meaning instead of
+line-editing, never invents facts (vague claims become deletable
+`[placeholders]`), and can match a specific person's voice from a writing
+sample. Pattern catalog, word list, genre rewrites and the voice method live
+in `skills/stop-slop/references/`.
+
 **[almost-paid](skills/almost-paid/SKILL.md)** is a standalone growth skill,
 not part of the content pipeline: validates money events, cuts six "almost
 paid" segments, prices them (`tools/cohort_value.py`), renders a one-screen
