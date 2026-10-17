@@ -50,6 +50,13 @@ video-producing step can call: rewrites prompts with spoken lines so the voice
 sounds human (auto-picked delivery, per-model dialogue syntax, acoustics,
 lipsync framing) + scene-matched audio post-processing checklist.
 
+**[photo-realism](skills/photo-realism/SKILL.md)** is the image counterpart:
+a standalone helper for any image-generation step (carousel covers, persona
+photos, outfit and product-in-use shots). It rewrites the prompt from "quality
+adjectives" into how the photo was taken (friend's phone at eye level, real
+place with life in it, an action, one light, iPhone look, visibility sentence,
+hard negative clause) and QA-checks the result against a table of AI tells.
+
 **[stop-slop](skills/stop-slop/SKILL.md)** is the text counterpart to
 voice-realism: a standalone helper for any English text (posts, captions,
 outreach emails, product copy, docs, essays, fiction). It diagnoses LLM
