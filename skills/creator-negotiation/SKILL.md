@@ -33,7 +33,7 @@ Convert a package to a per-video price, then take **ratio = your ceiling ÷ thei
 
 | Ratio | What happened in our log | Do |
 |---|---|---|
-| ≥ 1 | Nearly always closed | Accept their price. Don't haggle a price you can afford; pay fast instead. |
+| ≥ 1 | Nearly always closed | Ask once for a small discount tied to something real (full payment upfront, booking the series), and make clear their price works anyway (message 12). If they say no, accept their price straight away. Never claim a lower budget than you have. |
 | ~0.6–1 | Mostly closed: when our offer was at least ~60% of their ask, creators took it or came back with a number close to it | Offer your ceiling as your one honest number. If they come back at or under your ceiling, say yes. Above it, trade scope (drop the cross-post) or close. Never pay above your ceiling. |
 | ~0.33–0.6 | Closed when we cut scope; stalled when we only cut the price | One counter at your ceiling that also trades scope: one test video instead of three, no cross-post, a shorter series. |
 | < 0.33 | Almost never closed. The one exception was a creator new to paid deals who took 25% of her ask as a single "first test". | Don't counter. Decline warmly and leave the door open. |

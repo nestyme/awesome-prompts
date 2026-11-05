@@ -17,6 +17,7 @@ Sign with a real first name and one line about the product, e.g. `Alex / yourapp
 9. Keep it in writing (translator)
 10. Payment method they asked for
 11. Results first, then the next video
+12. A small discount when their price already works
 
 ---
 
@@ -133,3 +134,13 @@ Use with per-video deals when you want to see the first video perform before pay
 
 **ES**
 > ¡Gracias, quedó genial! Y ya está funcionando: hay gente registrándose con tu código. Démosle un par de días para ver cómo va y te escribo sobre el segundo video.
+
+## 12. A small discount when their price already works
+
+Use when your ceiling is at or above their ask. Ask once, tie it to something real you give, and say yes in the same message so a "no" costs nothing. If they decline, accept their price in your next message; don't ask again.
+
+**EN**
+> Hi {name}, thank you! {price} works for us. One question, and it's completely fine if the answer is no: if we pay the full amount upfront (or book the series of 3), is there any flexibility on the rate? Either way, we'd love to go ahead.
+
+**ES**
+> ¡Hola {nombre}! Gracias, {precio} nos funciona. Una pregunta, y está perfecto si la respuesta es no: si pagamos todo por adelantado (o hacemos la serie de 3), ¿hay algo de flexibilidad en la tarifa? Sea como sea, nos encantaría avanzar.

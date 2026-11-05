@@ -16,7 +16,7 @@
 
     <rect x="140" y="686" width="8" height="42" rx="2" fill="#2F8F5B"/>
     <text x="170" y="718" font-size="34" font-weight="500" fill="#2F8F5B">1+</text>
-    <text x="440" y="718" font-size="34" fill="#2F8F5B">yes, pay their price</text>
+    <text x="440" y="718" font-size="34" fill="#2F8F5B">ask once for a small discount, else yes</text>
 
     <rect x="140" y="742" width="8" height="42" rx="2" fill="#B57A12"/>
     <text x="170" y="774" font-size="34" font-weight="500" fill="#B57A12">0.6–1</text>
