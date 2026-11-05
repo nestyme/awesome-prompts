@@ -116,7 +116,7 @@ CREATE TABLE moves (
   paying_share       REAL,
   ceiling_usd        REAL,                      -- expected_views * paying_share / 1000 * your max $ per 1k
   ratio              REAL,                      -- ceiling_usd / per_video_usd
-  message_id         INTEGER REFERENCES messages(id),
+  message_id         INTEGER REFERENCES messages(id),  -- moves from one message form one turn
   at                 INTEGER NOT NULL,
   UNIQUE (negotiation_id, seq)
 );
@@ -230,19 +230,24 @@ WHERE s.side = 'creator' AND s.kind = 'quote'
   AND p.side = 'creator' AND p.kind = 'package_quote'
   AND s.per_video_usd > 0;
 
--- Rounds to close: count of priced moves in won negotiations.
+-- Rounds to close: priced TURNS in won negotiations. A single and a package price
+-- in one message are one turn, so turns are counted by message.
 CREATE VIEW v_rounds_to_close AS
 SELECT n.id AS negotiation_id,
-       SUM(m.kind IN ('quote','package_quote','counter')) AS priced_moves
+       COUNT(DISTINCT COALESCE(m.message_id, -m.id)) AS priced_turns
 FROM negotiations n JOIN moves m ON m.negotiation_id = n.id
-WHERE n.outcome = 'won'
+WHERE n.outcome = 'won' AND m.kind IN ('quote','package_quote','counter')
 GROUP BY n.id;
 
 -- Today's queue: what each open negotiation needs from us.
 CREATE VIEW v_next_actions AS
 WITH last_in  AS (SELECT negotiation_id, MAX(created_at) t FROM messages WHERE direction='in'  GROUP BY negotiation_id),
      last_out AS (SELECT negotiation_id, MAX(sent_at)    t FROM messages WHERE direction='out' AND status='sent' GROUP BY negotiation_id),
-     checkins AS (SELECT negotiation_id, COUNT(*) c, MAX(at) t FROM moves WHERE kind='check_in' GROUP BY negotiation_id)
+     -- one check-in per silence: only count check-ins sent after the creator's last reply
+     checkins AS (SELECT m.negotiation_id, COUNT(*) c, MAX(m.at) t
+                  FROM moves m LEFT JOIN last_in li ON li.negotiation_id = m.negotiation_id
+                  WHERE m.kind = 'check_in' AND m.at > COALESCE(li.t, 0)
+                  GROUP BY m.negotiation_id)
 SELECT n.id, c.handle,
        CASE
          WHEN COALESCE(li.t,0) > COALESCE(lo.t,0)                           THEN 'reply'
@@ -294,8 +299,8 @@ These protect the human reviewer from the mistakes that are easy to make at spee
 - **Agents draft, people send.** Only the UI's send route sets `sent_by_user = 1` and `status = 'sent'`.
 - **No counter on an unconfirmed currency.** Refuse to approve an outgoing `counter` if the creator's last priced move has `currency IS NULL` or `currency_confirmed = 0`. Draft the confirmation question instead.
 - **No counter on a stale valuation.** Warn if `median_checked_at` is older than ~14 days or no `audience_snapshots` row exists before the first payment.
-- **Round limit.** Warn before approving a priced move that would make it the fifth priced move in a negotiation (their ask, our counter, their counter, our final step).
-- **One check-in.** Refuse a second `check_in` move in the same negotiation; offer to close it as `silent_after_counter`.
+- **Round limit.** Warn before approving a priced turn that would be the fifth in a negotiation (their ask, our counter, their counter, our final step). A single and a package price in the same message are one turn, so count turns by message, not by row.
+- **One check-in per silence.** Refuse a second `check_in` when the creator hasn't replied since the last one; offer to close the negotiation as `silent_after_counter` (or `silent_after_agreement` if an agreement is waiting). A new silence after they reply gets its own single check-in.
 - **No extras after yes.** Once a deal exists, an outgoing message that adds items to `extras` should be flagged as a new negotiation, not slipped into a thread.
 - **Close with a reason.** A negotiation can't move to `lost` without an `outcome`; `revisit_after` is required for `declined_gap`, `declined_by_them` and `held_their_rate`.
 

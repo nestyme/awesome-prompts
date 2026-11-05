@@ -33,7 +33,7 @@ Use when they offered a series price you can afford. Take it as offered. Add onl
 
 ## 2. Counter by trading scope
 
-Use when your ceiling is roughly a third to two thirds of their per-video ask. One number and the reason for it. The scope change is how you meet them, not a smaller price for the same work.
+Use when your ceiling is 0.33–0.6 of their per-video ask. One number and the reason for it. The scope change is how you meet them, not a smaller price for the same work.
 
 **EN**
 > Hi {name}, thank you, and I love how you described the angle for your audience. Being upfront: the package is more than we can commit to right now. Would you be open to starting with one video? We could do {price} for one TikTok, paid upfront via PayPal. If it goes well, we'd love to do the other two. And if it doesn't work for you, no hard feelings at all.
