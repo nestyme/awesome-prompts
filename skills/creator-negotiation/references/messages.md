@@ -8,7 +8,7 @@ Sign with a real first name and one line about the product, e.g. `Alex / yourapp
 
 1. Accept their package price
 2. Counter by trading scope
-3. Meet halfway, once
+3. Say yes to their counter
 4. Confirm the currency
 5. Ask for the audience screenshot
 6. Warm decline (the gap is too big)
@@ -40,17 +40,19 @@ Use when your ceiling is roughly a third to two thirds of their per-video ask. O
 **ES**
 > ¡Hola {nombre}! Gracias, me encantó cómo lo planteas para tu audiencia. Te soy sincera: el paquete ahora mismo es más de lo que podemos. ¿Te animarías a empezar con un video? Podríamos pagar {precio} por un TikTok, por adelantado por PayPal. Si sale bien, nos encantaría hacer los otros dos. Y si no te encaja, no pasa nada.
 
+In the 0.6–1 band, send the same message with your ceiling as the price and no scope change.
+
 Scope levers, in the order to give them up: cross-post to Reels/Shorts → number of videos (test one first) → series length. Leave creative freedom and upfront payment alone; they're what makes a lower number fair.
 
-## 3. Meet halfway, once
+## 3. Say yes to their counter
 
-Use when they countered your counter and the midpoint is within your ceiling. Say yes clearly; don't counter the counter.
+Use when they answered your offer with a number at or under your ceiling. Say yes clearly; don't counter the counter.
 
 **EN**
-> Deal, {price} works for us. Thank you for meeting me halfway! The agreement is attached. To confirm, just reply "I agree", and send your PayPal email so the first payment goes out today.
+> Deal, {price} works for us. Thank you for working with our budget! The agreement is attached. To confirm, just reply "I agree", and send your PayPal email so the first payment goes out today.
 
 **ES**
-> ¡Trato hecho, {precio} nos funciona! Gracias por acercarte. Te adjunto el acuerdo: para confirmar, responde «de acuerdo» y mándame tu correo de PayPal, y el primer pago sale hoy.
+> ¡Trato hecho, {precio} nos funciona! Gracias por adaptarte a nuestro presupuesto. Te adjunto el acuerdo: para confirmar, responde «de acuerdo» y mándame tu correo de PayPal, y el primer pago sale hoy.
 
 ## 4. Confirm the currency
 

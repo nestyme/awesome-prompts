@@ -14,7 +14,7 @@ A small consumer app (two founders) paying micro-creators a fixed fee per short 
 **Quotes and outcomes**
 - Of creators who named a price, roughly a quarter ended in a signed deal.
 - Most closed deals came from the lower half of the quotes we received. At the high end, deals closed only as a single "first test" video.
-- When our ceiling was at least ~60% of the creator's per-video ask, deals mostly closed. Under ~33%, almost none did. In between, scope trades (one test video, no cross-post) closed; pure price cuts stalled.
+- When our offer (in practice, our ceiling) was at least ~60% of the creator's per-video ask, deals mostly closed: the creator accepted it or came back close to it. Under ~33%, almost none did. In between, scope trades (one test video, no cross-post) closed; pure price cuts stalled.
 - Creators offered series discounts of typically 10–35% per video versus their single-video rate. Accepting the creator's own package price closed in all cases but one (the exception went silent before signing) and gave the lowest per-video prices in the whole log.
 - Every closed deal settled within two rounds of counters.
 - Agency, talent-manager and UGC-studio rate sheets (3–10× direct quotes, +30% posting, +30% usage rights) never closed.

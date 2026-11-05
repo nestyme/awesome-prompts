@@ -33,9 +33,9 @@ Convert a package to a per-video price, then take **ratio = your ceiling ÷ thei
 
 | Ratio | What happened in our log | Do |
 |---|---|---|
-| ≥ 1 | Nearly always closed | Accept. Don't haggle a price you can afford; pay fast instead. |
-| ~0.6–1 | Mostly closed, often after one halfway step (they ask 100, you offer 60, they come back at 80, you say yes) | Accept, or make one counter and meet halfway once if they come back. |
-| ~0.33–0.6 | Closed when we cut scope; stalled when we only cut the price | One counter that trades scope: one test video instead of three, no cross-post, a shorter series. |
+| ≥ 1 | Nearly always closed | Accept their price. Don't haggle a price you can afford; pay fast instead. |
+| ~0.6–1 | Mostly closed: when our offer was at least ~60% of their ask, creators took it or came back with a number close to it | Offer your ceiling as your one honest number. If they come back at or under your ceiling, say yes. Above it, trade scope (drop the cross-post) or close. Never pay above your ceiling. |
+| ~0.33–0.6 | Closed when we cut scope; stalled when we only cut the price | One counter at your ceiling that also trades scope: one test video instead of three, no cross-post, a shorter series. |
 | < 0.33 | Almost never closed. The one exception was a creator new to paid deals who took 25% of her ask as a single "first test". | Don't counter. Decline warmly and leave the door open. |
 
 Two cases skip the table:
@@ -107,7 +107,7 @@ Both assume you'll pay at most $20 per 1,000 views from countries where your pro
 
 **"My rate is $500 per TikTok, or $1,300 for a series of three."** Unpinned median 9,000, audience 70% in countries where you sell. Expected views ≈ 9,000 ÷ 3 = 3,000, of which ~2,100 count. Ceiling ≈ $42 per video. Their package works out to about $430 per video, a ratio of 0.1. Decline warmly (message 6). A token counter here only adds a round and usually ends in the same kind no.
 
-**"$300 per video, $800 for three."** Unpinned median 30k, audience 90% in countries where you sell. Expected views ≈ 10k, ~9k count. Ceiling ≈ $180. Ratio = 0.6 against the single-video price. Counter once, a little under the ceiling, and offer one test video instead of the series (message 2). If they come back above the ceiling, meet them at the ceiling by giving up scope, for example by dropping the cross-post. That's how deals in this band closed for us.
+**"$300 per video, $800 for three."** Unpinned median 30k, audience 90% in countries where you sell. Expected views ≈ 10k, ~9k count. Ceiling ≈ $180. Ratio = 0.6, the edge between the two counter rows. Offer $180, your ceiling, for one test video instead of the series (message 2). If they come back at $220, don't split the difference: keep $180 and give up scope, for example the cross-post, or close kindly. That's how deals in this band closed for us.
 
 ## Log every price
 
@@ -118,6 +118,6 @@ The ratio table, the series discount and the round limit are only as good as the
 When the user brings a creator reply, return:
 
 1. The three numbers (expected views, audience note, your ceiling) and the ratio, with any assumption marked.
-2. A recommendation in one line: accept, counter (with the scope trade), meet halfway, decline, or close.
+2. A recommendation in one line: accept, counter at your ceiling, counter at your ceiling with a scope trade, decline, or close.
 3. The draft reply in the creator's language, plus an English or user-language translation if the user doesn't read it.
 4. Anything to check before sending: currency, audience screenshot, payment rails, a promise in the draft that must be true first (e.g. "payment sent").
