@@ -26,9 +26,9 @@ The repo's [`tools/`](../../tools/README.md) CLIs cover the primitives this skil
 | 2-3 | `gen_image.py` | The ONE paid step: generate the locked reference (text→image) and each cover (ONE-hop image-edit of that ref) |
 | 4 | `caption_composite.py` | The "text is free" step — composite captions in PIL with 8.5%/10%/10% safe margins; never regenerate a photo to change words |
 | 5 | `safe_zones.py` | Optional extra gate: verify slides sit inside platform safe zones + read at thumbnail size |
-| 6 | `schedule_post.py` | Batch-schedule via Postiz with AI-disclosure on; **defaults to `--dry-run`, needs `--live` to post** |
+| 6 | `schedule_post.py` | Batch-schedule via Buffer (public `--media-url`s; set the AI flag platform-side) or Postiz (local files, AI flag set by API); **defaults to `--dry-run`, needs `--live` to post** |
 
-Keys: `GEMINI_API_KEY`, `POSTIZ_API_KEY`. Full map + flags in [`tools/README.md`](../../tools/README.md).
+Keys: `GEMINI_API_KEY`, `BUFFER_API_KEY` or `POSTIZ_API_KEY`. Full map + flags in [`tools/README.md`](../../tools/README.md).
 
 The whole design is built around one economic insight (the "AI UGC army"
 playbook popularized by Adrià Martinez): the only expensive step is generating
@@ -62,8 +62,9 @@ over those photos **for free** with PIL. A persona costs ~$0.60 to stand up
    defining features every slide), and schedule ONLY the carousels the user
    approves. Never auto-publish unreviewed faces.
 6. **Always disclose AI content.** Every TikTok post sets the platform's
-   AI-generated-content flag (`video_made_with_ai: true` in the Postiz API).
-   Non-negotiable, keeps the account policy-safe.
+   AI-generated-content flag (`video_made_with_ai: true` in the Postiz API;
+   Buffer's API has no such flag — enable the disclosure toggle on the
+   account/post itself). Non-negotiable, keeps the account policy-safe.
 7. **No baked text in photos, ever.** Cover photos are generated with an
    explicit NO-TEXT clause. All words live in the PIL overlay layer so they stay
    editable, correctly spelled, and on-brand.

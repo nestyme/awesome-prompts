@@ -5,8 +5,10 @@ The carousel-conveyor "text is free" step: never regenerate a photo to change
 words. Text is drawn deterministically in PIL so it is always correctly spelled,
 inside the safe zone, and re-renderable at $0.
 
-Enforces: left/right safe margin = 8.5% of width, top band = 10%, bottom band =
-10% (platform UI covers those), font auto-fit so text never overflows.
+Enforces: left/right safe margin = 8.5% of width, top band = 16%, bottom band =
+14% (measured against TikTok photo-mode overlays on a LIVE post 2026-07-24 —
+the search pill reaches ~15% from the top), font auto-fit so text never
+overflows.
 
 Usage:
   python caption_composite.py --image cover.png --out slide_01.png \\
@@ -21,8 +23,8 @@ import os
 import _common as c
 
 SAFE_X = 0.085   # left/right safe margin
-TOP_BAND = 0.10  # platform UI (top)
-BOT_BAND = 0.10  # platform UI (bottom)
+TOP_BAND = 0.16  # platform UI (top) — TikTok photo-mode search pill reaches ~15%
+BOT_BAND = 0.14  # platform UI (bottom) — caption/dots overlay
 
 
 def find_font(size, font_path=None):
