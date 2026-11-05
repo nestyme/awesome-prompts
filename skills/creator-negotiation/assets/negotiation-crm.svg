@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1350" height="1350" viewBox="0 0 1350 1350" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+  <rect width="1350" height="1350" fill="#FBFBF9"/>
+  <g fill="#111111">
+    <text x="140" y="190" font-size="24" fill="#8C8C8C">a creator replies</text>
+    <text x="140" y="280" font-size="76" font-weight="500" letter-spacing="-1">“$500 per video”</text>
+
+    <line x1="140" y1="350" x2="1210" y2="350" stroke="#E3E3E0" stroke-width="2"/>
+
+    <text x="140" y="430" font-size="24" fill="#8C8C8C">what the video is worth to us</text>
+    <text x="140" y="494" font-size="34">views ≈ their median ÷ 3</text>
+    <text x="140" y="548" font-size="34"><tspan fill="#2E5FD0" font-weight="500">worth</tspan> = views × share from buying countries × $ per view</text>
+
+    <line x1="140" y1="618" x2="1210" y2="618" stroke="#E3E3E0" stroke-width="2"/>
+
+    <text x="140" y="698" font-size="24" fill="#8C8C8C"><tspan fill="#2E5FD0">worth</tspan> ÷ ask</text>
+
+    <rect x="140" y="732" width="8" height="42" rx="2" fill="#2F8F5B"/>
+    <text x="170" y="764" font-size="34" font-weight="500" fill="#2F8F5B">0.6+</text>
+    <text x="440" y="764" font-size="34" fill="#2F8F5B">yes, meet halfway once at most</text>
+
+    <rect x="140" y="790" width="8" height="42" rx="2" fill="#C98A1B"/>
+    <text x="170" y="822" font-size="34" font-weight="500" fill="#B57A12">0.33–0.6</text>
+    <text x="440" y="822" font-size="34" fill="#B57A12">one counter with fewer videos</text>
+
+    <rect x="140" y="848" width="8" height="42" rx="2" fill="#C8472E"/>
+    <text x="170" y="880" font-size="34" font-weight="500" fill="#C8472E">under 0.33</text>
+    <text x="440" y="880" font-size="34" fill="#C8472E">say no kindly, write again later</text>
+
+    <text x="170" y="938" font-size="34" fill="#8C8C8C">own package</text>
+    <text x="440" y="938" font-size="34" fill="#8C8C8C">take it</text>
+
+    <line x1="140" y1="1008" x2="1210" y2="1008" stroke="#E3E3E0" stroke-width="2"/>
+
+    <text x="140" y="1088" font-size="24" fill="#8C8C8C">log every price</text>
+    <text x="140" y="1152" font-size="34">creator → thread → <tspan fill="#2E5FD0" font-weight="500">price</tspan> → deal → <tspan fill="#2F8F5B" font-weight="500">payers</tspan></text>
+    <text x="140" y="1206" font-size="34" fill="#8C8C8C"><tspan fill="#2F8F5B">payers</tspan> move the thresholds</text>
+
+    <text x="140" y="1290" font-size="20" fill="#B0B0AC">@nestymee</text>
+    <text x="1210" y="1290" font-size="20" fill="#B0B0AC" text-anchor="end">awesome-prompts / creator-negotiation</text>
+  </g>
+</svg>

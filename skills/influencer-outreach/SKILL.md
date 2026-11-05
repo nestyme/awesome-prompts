@@ -41,7 +41,7 @@ The outreach half (CRM, drafting, sending, payouts) is a small local codebase yo
 9. **Lock the view count on a fixed day.** "Views counted on day 14, that figure is final" protects both sides: you don't carry an open-ended liability if the video resurfaces in six months, and the creator knows the exact date of the second payment instead of "sometime".
 10. **The same offer gets "thanks, door's open" and "this is not dignified".** The offer is not the variable — the person is. Log every decline reason; they are a free audit of the funnel. In the source run five price declines shared one shape: a rate card of $150–1000 against a real median of 5–20k views.
 11. **Open every platform a creator bills you for.** One creator priced $450 for "cross-posting to TikTok, Instagram and YouTube" — the Instagram was empty and the YouTube was blocked. Thirty seconds of clicking catches what no scoring formula can.
-12. **Follow-ups produce roughly half your replies.** People lose emails; a single "just checking this didn't get buried — if it's not a fit, a quick no is totally fine" resurrects a surprising share of dead threads. Explicit permission to decline is what makes it work: silence is usually embarrassment, and a "no" is worth more than a ghost.
+12. **Send one follow-up, then stop.** In the first small run follow-ups looked like half the replies; across the larger run that followed, 94% of replies arrived before any follow-up went out. One "just checking this didn't get buried — if it's not a fit, a quick no is totally fine" is still worth sending: explicit permission to decline turns some silences into answers, and a "no" is worth more than a ghost. A second follow-up rarely is.
 
 ## Step 0 — Bootstrap (first run only)
 
@@ -136,6 +136,8 @@ Then: what you pay (base + per-N-views + cap), base upfront before filming, dead
 | "Tell me more" | Full mechanics + scale in one message; don't drip |
 | A counter you want | Restructure rather than raise: *"we can't put $450 into one video, but we'd do $450 for two"* — same total, more reach, and they still get their number |
 | Silence, 3+ days | One follow-up with explicit permission to say no (principle 12) |
+
+For the negotiation itself (reading a quote against what the video is worth, one-counter rules, currency, payment terms, when to stop and how to decline), use [creator-negotiation](../creator-negotiation/SKILL.md).
 
 ## Step 7 — Contract and pay
 
