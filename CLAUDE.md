@@ -57,6 +57,15 @@ adjectives" into how the photo was taken (friend's phone at eye level, real
 place with life in it, an action, one light, iPhone look, visibility sentence,
 hard negative clause) and QA-checks the result against a table of AI tells.
 
+**[pinterest-outfit-photo](skills/pinterest-outfit-photo/SKILL.md)** builds on
+photo-realism for fashion: a person wearing an exact outfit from product
+images, as an influencer outfit post that sells the look. Product cutouts →
+`make_refs.py` (one image per garment, accessories on one board) → shot plan
+(pose/person/place/light never repeat between neighbours) → prompt template
+(named angle, confident styled person, the outfit as the hero, hard negative
+clause) → `gen.py` (OpenRouter, Nano Banana 2) → `qa_sheet.py` against the
+cutouts, single-item drift fixed with `gen.py --edit`.
+
 **[stop-slop](skills/stop-slop/SKILL.md)** is the text counterpart to
 voice-realism: a standalone helper for any English text (posts, captions,
 outreach emails, product copy, docs, essays, fiction). It diagnoses LLM
